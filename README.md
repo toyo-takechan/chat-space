@@ -33,8 +33,8 @@
 |------|----|-------|
 |body|text|null: false|
 |image|string|
-|group|reference|foreign_key: true|
-|user|reference|foreign_key: true|
+|group|reference|null: false,foreign_key: true|
+|user|reference|null: false,foreign_key: true|
 ### Association
 - belongs_to :group
 - belongs_to :user
