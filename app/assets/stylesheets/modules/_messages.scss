@@ -47,9 +47,12 @@
       display: flex;
       overflow: scroll;
         &__groups{
-         color:#ffffff;
          font-weight: bold;
          height:95px;
+         a{
+          color:#ffffff;
+          text-decoration: none ;
+         }
           &__groupname{
             padding:20px 20px 5px 20px;
             font-size:15px;
