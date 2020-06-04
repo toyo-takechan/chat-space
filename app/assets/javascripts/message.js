@@ -2,17 +2,17 @@ $(function () {
   function buildHTML(message) {
     if (message.image) {
       var html =
-        `<div class="message">
-            <div class="upper-message">
-              <div class="upper-message__user-name">
+        `<div class="chat-main__message">
+            <div class="chat-main__message__line">
+              <div class="chat-main__message__line__name">
                 ${message.user_name}
               </div>
-              <div class="upper-message__date">
+              <div class="chat-main__message__line__date">
                 ${message.created_at}
               </div>
             </div>
-            <div class="lower-message">
-              <p class="lower-message__content">
+            <div class="chat-main__message__review">
+              <p class="chat-main__message__review">
                 ${message.content}
               </p>
             </div>
@@ -21,17 +21,17 @@ $(function () {
       return html;
     } else {
       var html =
-        `<div class="message">
-            <div class="upper-message">
-              <div class="upper-message__user-name">
+        `<div class="chat-main__message">
+            <div class="chat-main__message__line">
+              <div class="chat-main__message__line__name">
                 ${message.user_name}
               </div>
-              <div class="upper-message__date">
+              <div class="chat-main__message__line__date">
                 ${message.created_at}
               </div>
             </div>
-            <div class="lower-message">
-              <p class="lower-message__content">
+            <div class="chat-main__message__review">
+              <p class="chat-main__message__review">
                 ${message.content}
               </p>
             </div>
@@ -53,6 +53,14 @@ $(function () {
     })
       .done(function (data) {
         var html = buildHTML(data);
+        // $(".chat-main__header__current-group__member-list__member").append("yogo")
+        $('.chat-main__message').append(html);
+        $('form')[0].reset();
+        $('.chat-main__message').animate({ scrollTop: $('.chat-main__messages')[0].scrollHeight });
+        $('.submit-btn').prop('disabled', false);
       })
+      .fail(function () {
+        alert("メッセージ送信に失敗しました");
+      });
   })
 });
