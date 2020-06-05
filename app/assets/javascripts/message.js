@@ -2,8 +2,7 @@ $(function () {
   function buildHTML(message) {
     if (message.image) {
       var html =
-        `<div class="chat-main__message">
-            <div class="chat-main__message__line">
+            `<div class="chat-main__message__line">
               <div class="chat-main__message__line__name">
                 ${message.user_name}
               </div>
@@ -12,17 +11,15 @@ $(function () {
               </div>
             </div>
             <div class="chat-main__message__review">
-              <p class="chat-main__message__review">
+              <p class="chat-main__message__review__content">
                 ${message.content}
               </p>
-            </div>
+            </div>`
             <img src=${message.image} >
-          </div>`
       return html;
     } else {
       var html =
-        `<div class="chat-main__message">
-            <div class="chat-main__message__line">
+            `<div class="chat-main__message__line">
               <div class="chat-main__message__line__name">
                 ${message.user_name}
               </div>
@@ -31,11 +28,10 @@ $(function () {
               </div>
             </div>
             <div class="chat-main__message__review">
-              <p class="chat-main__message__review">
+              <p class="chat-main__message.__review__content">
                 ${message.content}
               </p>
-            </div>
-          </div>`
+            </div>`
       return html;
     };
   }
@@ -56,7 +52,8 @@ $(function () {
         // $(".chat-main__header__current-group__member-list__member").append("yogo")
         $('.chat-main__message').append(html);
         $('form')[0].reset();
-        $('.chat-main__message').animate({ scrollTop: $('.chat-main__messages')[0].scrollHeight });
+        $('.chat-main__message').animate({ scrollTop: $('.chat-main__message')[0].scrollHeight });
+        console.log($('.submit-btn'))
         $('.submit-btn').prop('disabled', false);
       })
       .fail(function () {
