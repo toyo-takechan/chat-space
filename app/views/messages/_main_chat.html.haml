@@ -11,13 +11,15 @@
       = link_to edit_group_path(@group) do
         Edit
   .chat-main__message
-    .chat-main__message__line
-      .chat-main__message__line__name
-        masa
-      .chat-main__message__line__date
-        2020/05/20
-    .chat-main__message__review
-      おはようございます!
+    - current_user.messages.each do |message|
+      .chat-main__message__line
+        .chat-main__message__line__name
+          = message.user.name
+        .chat-main__message__line__date
+          = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+      .chat-main__message__review
+        = message.content
+        = message.image
   
   .chat-main__form
     = form_for [@group, @message] do |f|
@@ -27,12 +29,3 @@
           = icon('fas', 'image', class: 'icon')
           = f.file_field :image, class: 'form__input-box__image__file'
       = f.submit 'Send', class: 'submit-btn'
-
-  -# .chat-main__form
-  -#   %form.new__message
-  -#     .input-box
-  -#       %input.input-box__text{type: "text",placeholder: "type a message" }
-  -#       %label.input-box__image
-  -#         = icon('fas','image')
-  -#         %input{type:"file", class:"input-box__image__file"}
-  -#     %input{type:"submit" ,class:"submit-btn" ,name:"commit" ,value:"Send"}
