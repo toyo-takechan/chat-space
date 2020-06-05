@@ -53,11 +53,17 @@ $(function () {
         $('.chat-main__message').append(html);
         $('form')[0].reset();
         $('.chat-main__message').animate({ scrollTop: $('.chat-main__message')[0].scrollHeight });
-        console.log($('.submit-btn'))
         $('.submit-btn').prop('disabled', false);
       })
       .fail(function () {
         alert("メッセージ送信に失敗しました");
       });
+      .always(function (data) {
+        var html = buildHTML(data);
+        $('.chat-main__message').append(html);
+        $('form')[0].reset();
+        $('.chat-main__message').animate({ scrollTop: $('.chat-main__message')[0].scrollHeight });
+        $('.submit-btn').prop('disabled', false);
+      })
   })
 });
