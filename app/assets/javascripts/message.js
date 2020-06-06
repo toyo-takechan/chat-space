@@ -1,44 +1,48 @@
 $(function () {
   function buildHTML(message) {
     if (message.image) {
-      var html =
-            `<div class="chat-main__message__line">
-              <div class="chat-main__message__line__name">
-                ${message.user_name}
-              </div>
-              <div class="chat-main__message__line__date">
-                ${message.created_at}
-              </div>
+      var html =`
+        <div class="message">
+          <div class="message__line">
+            <div class="message__line__name">
+              ${message.user_name}
             </div>
-            <div class="chat-main__message__review">
-              <p class="chat-main__message__review__content">
-                ${message.content}
-              </p>
+            <div class="message__line__date">
+              ${message.created_at}
+            </div>
+          </div>
+          <div class="message__review">
+            <p class="message__review__content">
+              ${message.content}
+            </p>
             <img src=${message.image} >
-            </div>`
+          </div>
+        </div>`
       return html;
     } else {
-      var html =
-            `<div class="chat-main__message__line">
-              <div class="chat-main__message__line__name">
-                ${message.user_name}
-              </div>
-              <div class="chat-main__message__line__date">
-                ${message.created_at}
-              </div>
+      var html =`
+        <div class="message">
+          <div class="message__line">
+            <div class="message__line__name">
+              ${message.user_name}
             </div>
-            <div class="chat-main__message__review">
-              <p class="chat-main__message.__review__content">
-                ${message.content}
+            <div class="message__line__date">
+              ${message.created_at}
+            </div>
+          </div>
+          <div class="message__review">
+            <p class="message.__review__content">
+              ${message.content}
               </p>
-            </div>`
+          </div>
+        </div>`
       return html;
     };
   }
   $('#new_message').on('submit', function (e) {
     e.preventDefault();
     var formData = new FormData(this);
-    var url = $(this).attr('action')
+    var url = $(this).attr('action');
     $.ajax({
       url: url,
       type: "POST",
@@ -47,17 +51,17 @@ $(function () {
       processData: false,
       contentType: false
     })
-      .done(function (data) {
-        var html = buildHTML(data);
-        $('.chat-main__message').append(html);
-        $('.chat-main__message').animate({ scrollTop: $('.chat-main__message')[0].scrollHeight });
-      })
-      .fail(function () {
-        alert("メッセージ送信に失敗しました");
-      });
-      .always(function (data) {
-        $('form')[0].reset();
-        $('.submit-btn').prop('disabled', false);
-      })
+    .done(function (data) {
+      var html = buildHTML(data);
+      $('.messages').append(html);
+      $('.messages').animate({ scrollTop: $('.messages')[0].scrollHeight });
+    })
+    .fail(function () {
+      alert("メッセージ送信に失敗しました");
+    })
+    .always(function () {
+      $('form')[0].reset();
+      $('.submit-btn').prop('disabled', false);
+    })
   })
 });

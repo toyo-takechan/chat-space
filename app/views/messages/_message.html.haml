@@ -1,0 +1,10 @@
+.message{data: {message: {id: message.id}}}
+  - current_user.messages.each do |message|
+    .message__line
+      .message__line__name
+        = message.user.name
+      .message__line__date
+        = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+    .message__review
+      = message.content
+      = message.image
