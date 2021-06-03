@@ -1,4 +1,6 @@
 * ...
+#現在は　公開を停止しております
+#テックキャンプで学んだ時に　作成した　アプリです。
 # chat space DB設計
 ## usersテーブル
 |Column|Type|Options|
